@@ -1,0 +1,99 @@
+<html lang="en">
+ <head>
+</head>
+<body style="background-image: url(Untitled.png);">
+    <div>
+    <img src= "goku.png" style="position: absolute; top: 100; left: 100; margin-top: 10;" id="goku">
+    <img src= "frizea2.png" style="position: absolute; top:300; left: 1000;" id="frieza">
+    <!-- <img src="images.png" style="position: absolute; top:300; left: 1000;" id="kiBlast" > -->
+    <img src="" style="position: absolute;" id="kiBlast" >
+    </div>
+    <script>
+        
+        let moveleft = 10;
+        let elementGoku = document.getElementById("goku");
+        let elementFrieza = document.getElementById("frieza");
+        let elementKi = document.getElementById("kiBlast")
+        function leftArrowPressed() {
+           
+          elementGoku.style.left = parseInt(elementGoku.style.left) - 7 + 'px';
+        }
+
+        function rightArrowPressed() {
+           
+            elementGoku.style.left = parseInt(elementGoku.style.left) + 7 + 'px';
+
+        }
+
+        function upArrowPressed() {
+           
+            elementGoku.style.top = parseInt(elementGoku.style.top) - 7 + 'px';
+        }
+
+        function downArrowPressed() {
+           
+            elementGoku.style.top = parseInt(elementGoku.style.top) + 5 + 'px';
+        }
+        function shoot(){ 
+        moveleft += 20;        
+        document.getElementById("kiBlast").style.left = moveleft + `px`;
+        
+        if (elementKi.style.left < elementGoku.style.left && elementKi.style.top < elementGoku.style.top) {
+            elementKi.style.left = parseInt(elementGoku.style.left) + 200 + 'px';
+                elementKi.style.top = parseInt(elementGoku.style.top) + 65 + 'px'; 
+                
+        }
+          
+        }
+
+
+        function moveSelection(evt) {
+            switch (evt.keyCode) {
+                case 37:
+                    leftArrowPressed();
+                    break;
+                case 39:
+                    rightArrowPressed();
+                    break;
+                case 38:
+                    upArrowPressed();
+                    break;
+                case 40:
+                    downArrowPressed();
+                    break;
+             
+            }
+        };
+        function shootSelection(evt) {
+            switch (evt.keyCode) {
+              case 32: 
+               elementKi.style.left = parseInt(elementGoku.style.left) + 200 + 'px';
+                elementKi.style.top = parseInt(elementGoku.style.top) + 65 + 'px';
+                
+                var myVar = setInterval(shoot, 100);
+                myVar = setInterval(shoot,200);
+                document.getElementById("kiBlast").src ="images.png"
+                document.getElementById("kiBlast")
+                
+               
+                break;
+            }
+          };
+
+        function hit() {
+            if ((elementKi.style.left == elementFrieza.style.left) || (elementKi.style.top == elementFrieza.style.top)) {
+
+                alert(`hit`)
+            }
+            console.log('no')
+        }
+        document.addEventListener('keydown', moveSelection);
+        document.addEventListener('keydown', shootSelection);
+        // document.addEventListener('keyup', hit);
+       
+
+
+    </script>
+</body>
+
+</html>
